@@ -17,6 +17,7 @@ const Form = () => {
   const [school, setSchool] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [cbt_center, setCbtCenter] = useState("cybertron-limited");
+  const [image, setImage] = useState("");
 
   const inputStyle = "p-2 border border-black rounded-lg focus:outline-none";
 
@@ -200,6 +201,18 @@ const Form = () => {
               value={nationality}
               onChange={(e) => setNationality(e.target.value)}
               placeholder="Enter your nationality"
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-xl max-md:text-sm font-medium">
+              Passport Photo
+            </label>
+            <input
+              name="image"
+              type="file"
+              required
+              className={inputStyle}
+              onChange={(e) => setImage(e.target.files[0])}
             />
           </div>
           <div className="flex flex-col gap-1">
