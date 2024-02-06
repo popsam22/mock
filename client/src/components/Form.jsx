@@ -18,6 +18,7 @@ const Form = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [cbt_center, setCbtCenter] = useState("cybertron-limited");
   const [image, setImage] = useState("");
+  const [session, setSession] = useState("");
 
   const inputStyle = "p-2 border border-black rounded-lg focus:outline-none";
 
@@ -304,6 +305,20 @@ const Form = () => {
                   {item.title}
                 </option>
               ))}
+            </select>
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-xl max-md:text-sm font-medium">
+              Select Exam Session
+            </label>
+            <select
+              name="session"
+              value={session}
+              onChange={(e) => setSession(e.target.value)}
+              className={inputStyle}
+            >
+              <option value="morning">Morning</option>
+              <option value="evening">Evening</option>
             </select>
           </div>
           <div className="flex mt-5">
