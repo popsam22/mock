@@ -14,14 +14,37 @@ const addStudent = async (req, res) => {
     school,
     cbt_center,
     referral_code,
+    session,
   } = req.body;
 
-  if (!firstName || !lastName || !phone || !cbt_center || !school) {
+  if (!firstName || !lastName || !phone || !cbt_center || !school || !session) {
     return res
       .status(400)
       .json({ error: "Please provide the necessary information." });
   }
   try {
+    const cbtCentersCapacities = {
+      Cybertron: 150,
+      BMG: 250,
+      Wudil: 200,
+      LEGEND: 150,
+      Pioneers: 150,
+      Butale: 150,
+      Hamdala: 150,
+      Aua: 150,
+    };
+
+    if (!(cbt_center in cbtCentersCapacities)) {
+      return res.status(400).json({ error: "Invalid CBT center." });
+    }
+
+    const existingStudents = await Student.find({ cbt_center, session });
+    const capacityLimit = cbtCentersCapacities[cbt_center];
+    if (existingStudents.length >= capacityLimit) {
+      return res
+        .status(400)
+        .json({ error: "Capacity limit reached for this session!" });
+    }
     const newStudent = await Student.create({
       firstName,
       lastName,
