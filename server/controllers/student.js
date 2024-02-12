@@ -12,12 +12,23 @@ const addStudent = async (req, res) => {
     parentsName,
     address,
     school,
+    schoolType,
+    classes,
     cbt_center,
     referral_code,
     session,
   } = req.body;
 
-  if (!firstName || !lastName || !phone || !cbt_center || !school || !session) {
+  if (
+    !firstName ||
+    !lastName ||
+    !phone ||
+    !cbt_center ||
+    !school ||
+    !session ||
+    !schoolType ||
+    !classes
+  ) {
     return res
       .status(400)
       .json({ error: "Please provide the necessary information." });
@@ -56,6 +67,9 @@ const addStudent = async (req, res) => {
       parentsName,
       address,
       school,
+      schoolType,
+      session,
+      classes,
       cbt_center,
       referral_code,
     });
