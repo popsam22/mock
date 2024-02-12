@@ -19,6 +19,8 @@ const Form = () => {
   const [cbt_center, setCbtCenter] = useState("cybertron-limited");
   const [image, setImage] = useState("");
   const [session, setSession] = useState("");
+  const [schoolType, setSchoolType] = useState("");
+  const [classes, setClasses] = useState("");
 
   const inputStyle = "p-2 border border-black rounded-lg focus:outline-none";
 
@@ -61,6 +63,8 @@ const Form = () => {
       cbt_center,
       phone: phoneNumber,
       school,
+      schoolType,
+      session,
       referral_code,
     };
 
@@ -272,23 +276,58 @@ const Form = () => {
               name="school"
               type="text"
               className={inputStyle}
-              placeholder="Enter your school"
+              placeholder="Enter the name of your school"
               value={school}
               onChange={(e) => setSchool(e.target.value)}
             />
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-xl max-md:text-sm font-medium">
-              Referral Code
+              Type of school
             </label>
-            <input
-              name="referralCode"
-              type="text"
+            <div className="flex gap-2">
+              <div className="flex gap-2">
+                <label className="text-xl max-md:text-sm">
+                  <input
+                    type="radio"
+                    id="private"
+                    name="private"
+                    required
+                    value={"private"}
+                    onChange={(e) => setSchoolType(e.target.value)}
+                  />{" "}
+                  Private School
+                </label>
+              </div>
+              <div className="flex gap-2">
+                <label className="text-xl max-md:text-sm">
+                  <input
+                    type="radio"
+                    id="public"
+                    name="private"
+                    required
+                    value={"public"}
+                    onChange={(e) => setSchoolType(e.target.value)}
+                  />{" "}
+                  Public School
+                </label>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-xl max-md:text-sm font-medium">
+              Select Class
+            </label>
+            <select
+              name="class"
+              value={classes}
+              onChange={(e) => setClasses(e.target.value)}
               className={inputStyle}
-              placeholder="Enter your referral code"
-              value={referral_code}
-              onChange={(e) => setReferralCode(e.target.value)}
-            />
+            >
+              <option value="arts">Arts</option>
+              <option value="science">Science</option>
+              <option value="commercial">Commercial</option>
+            </select>
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-xl max-md:text-sm font-medium">
@@ -320,6 +359,19 @@ const Form = () => {
               <option value="morning">Morning</option>
               <option value="evening">Evening</option>
             </select>
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-xl max-md:text-sm font-medium">
+              Referral Code
+            </label>
+            <input
+              name="referralCode"
+              type="text"
+              className={inputStyle}
+              placeholder="Enter your referral code"
+              value={referral_code}
+              onChange={(e) => setReferralCode(e.target.value)}
+            />
           </div>
           <div className="flex mt-5">
             <button
