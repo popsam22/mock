@@ -47,6 +47,14 @@ const studentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    schoolType: {
+      type: String,
+      required: true,
+    },
+    classes: {
+      type: String,
+      required: true,
+    },
     cbt_center: {
       type: String,
       required: true,
