@@ -7,11 +7,13 @@ const Navbar = () => {
   return (
     <div className="flex justify-between">
       <div className="justify-start">
-        <img
-          src={skoolbod}
-          className="w-[200px] h-[100px] max-md:w-[100px] object-cover"
-          alt="logo"
-        />
+        <a href="https://skoolbod.com" target="_blank">
+          <img
+            src={skoolbod}
+            className="w-[200px] h-[100px] max-md:w-[100px] object-cover"
+            alt="logo"
+          />
+        </a>
       </div>
       <div className="flex mr-4 items-center">
         <img
@@ -24,11 +26,13 @@ const Navbar = () => {
           alt="meta"
           className="ml-2 max-md:w-[30px] max-md:h-[30px] object-cover"
         />
-        <img
-          src={whatsapp}
-          alt="whatsapp"
-          className="ml-2 max-md:w-[30px] max-md:h-[30px] object-cover"
-        />
+        <a href="https://wa.me/2349134281674" target="_blank">
+          <img
+            src={whatsapp}
+            alt="whatsapp"
+            className="ml-2 max-md:w-[30px] max-md:h-[30px] object-cover"
+          />
+        </a>
       </div>
     </div>
   );

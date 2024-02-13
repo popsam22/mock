@@ -2,6 +2,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Form from "./components/Form";
 import Navbar from "./components/Navbar";
+import zenkleus from "./assets/Zenkleus-logo.png";
 
 const App = () => {
   return (
@@ -21,6 +22,22 @@ const App = () => {
           pauseOnHover
           theme="light"
         />
+      </div>
+      <div className=" w-full flex justify-center mb-4">
+        <footer>
+          <div className="flex items-center">
+            <p>Powered by</p>
+            <div className="h-[120px]">
+              <a href="https://zenkleus.com" target="_blank">
+                <img
+                  src={zenkleus}
+                  alt="logo"
+                  className="object-cover w-full h-full"
+                />
+              </a>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   );
