@@ -10,7 +10,7 @@ const Navbar = () => {
         <a href="https://skoolbod.com" target="_blank">
           <img
             src={skoolbod}
-            className="w-[200px] h-[100px] max-md:w-[100px] object-cover"
+            className="w-[400px] h-[100px] max-md:w-[100px] object-cover"
             alt="logo"
           />
         </a>
