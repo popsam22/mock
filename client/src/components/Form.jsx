@@ -1,6 +1,7 @@
 import { useState } from "react";
-import hero from "../assets/hero_form.png";
-import zenkleus from "../assets/Zenkleus-logo.png";
+// import hero from "../assets/hero_form.png";
+import hero from "../assets/hero.png";
+import logo from "../assets/logo.png";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -78,7 +79,6 @@ const Form = () => {
         amount: 1500,
       }
     );
-    console.log(res);
     if (res?.data?.data?.status) {
       window.open(res?.data?.data?.data?.authorization_url, "_blank");
 
@@ -113,7 +113,8 @@ const Form = () => {
             setClasses("morning");
           } else {
             setIsLoading(false);
-            toast.error(res?.message);
+            console.log(res);
+            toast.error(res?.data?.message);
             return;
           }
         }
@@ -136,11 +137,14 @@ const Form = () => {
   return (
     <div>
       <div className="flex max-md:flex-col gap-6 justify-between">
-        <div className="w-1/2 max-md:w-full max-md:hidden">
+        <div className="w-1/2 max-md:w-full max-md:hidden mt-20">
+          <div className="flex justify-center items-center">
+            <img src={logo} alt="skoolbod" className="object-contain" />
+          </div>
           <img
             src={hero}
             alt="form-image"
-            className="w-full h-full object-contain"
+            className="w-full object-cover mt-8 rounded-md"
           />
         </div>
         <div className="w-1/2 max-md:w-full">

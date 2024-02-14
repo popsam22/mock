@@ -7,7 +7,7 @@ import zenkleus from "./assets/Zenkleus-logo.png";
 const App = () => {
   return (
     <div className="flex flex-col items-center h-screen">
-      <div className="w-[90%] pb-12">
+      <div className="w-[90%] pb-12 max-md:pb-4">
         <Navbar />
         <Form />
         <ToastContainer
