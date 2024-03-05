@@ -1,4 +1,4 @@
-import skoolbod from "../assets/skoolbod.png";
+import { skoolboduncut } from "../assets";
 import instagram from "../assets/instagram.svg";
 import meta from "../assets/meta.svg";
 import whatsapp from "../assets/whatsapp.svg";
@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className="justify-start">
         <a href="https://skoolbod.com" target="_blank" rel="noreferrer">
           <img
-            src={skoolbod}
+            src={skoolboduncut}
             className="w-[400px] h-[100px] max-md:w-[200px] object-cover"
             alt="logo"
           />
