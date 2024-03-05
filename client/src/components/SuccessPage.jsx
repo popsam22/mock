@@ -1,27 +1,8 @@
 /* eslint-disable react/prop-types */
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import SlipTemplate from "./SlipTemplate";
-import {
-  PDFViewer,
-  Document,
-  Page,
-  View,
-  Image,
-  Text,
-} from "@react-pdf/renderer";
-
-
-
-const MyDoc = () => (
-  <Document>
-    <Page>
-      <Text>My document data</Text>
-    </Page>
-  </Document>
-);
 
 const SuccessPage = ({ data }) => {
-  console.log(data);
   const inputStyle = "p-2 ";
   return (
     <div className="items-center">
@@ -29,12 +10,12 @@ const SuccessPage = ({ data }) => {
       <p className="mt-6 text-center text-2xl">
         Your Application has been processed successfully.
       </p>
-      <div className="text-center">
-        <p className="mt-6 sm:ml-[30%] text-left text-xl text-blue-600">
+      <div className="text-center ml-[15%]">
+        <p className="mt-6 text-left text-xl text-blue-600">
           Application Summary:
         </p>
-        <div className="sm:ml-[33%] mt-4">
-          <div className="flex gap-1 items-center">
+        <div className="items-center text-center mt-4">
+          <div className="flex gap-1 items-center text-center">
             <label className="text-xl max-md:text-sm font-medium">
               Exam ID:
             </label>
@@ -63,16 +44,14 @@ const SuccessPage = ({ data }) => {
             <h2 className={inputStyle}>26 / 03 / 2024</h2>
           </div>
         </div>
-        <div className="rounded-lg text-center ml-[15%] bg-green-600 text-white w-1/2 mt-8 p-2 shadow-md shadow-black">
+        <div className="rounded-lg text-center bg-green-600 text-white w-[45%] mt-8 p-2 shadow-md shadow-black">
           <PDFDownloadLink
-            document={<SlipTemplate />}
+            document={<SlipTemplate data={{ ...data }} />}
             fileName="mock_slip.pdf"
           >
-            {({ blob, url, loading, error }) => {
-              // console.log(error, url)
-              return (loading ? "Loading slip..." : "Download Exam Slip")
-            }
-            }
+            {({ loading }) => {
+              return loading ? "Loading slip..." : "Download Exam Slip";
+            }}
           </PDFDownloadLink>
         </div>
       </div>

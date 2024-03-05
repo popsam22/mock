@@ -35,7 +35,8 @@ const Form = () => {
   const [session, setSession] = useState("morning");
   const [schoolType, setSchoolType] = useState("");
   const [classes, setClasses] = useState("arts");
-  const [examId, setExamId] = useState(createRandomString(10))
+  const [examId, setExamId] = useState(createRandomString(10));
+  const [formData, setFormData] = useState({})
 
   const inputStyle = "p-2 border border-black rounded-lg focus:outline-none";
 
@@ -84,6 +85,7 @@ const Form = () => {
       classes,
       examId
     };
+    setFormData(body)
 
     const res = await axios.post(
       "https://mock-service-mpv9.onrender.com/api/v1/payment",
@@ -435,7 +437,7 @@ const Form = () => {
           </form>
         </div>
         </div>
-        : <SuccessPage data={{ name: `${firstName} ${lastName}`, department:classes, center:cbt_center, examId }} />
+        : <SuccessPage data={{ name: `${firstName} ${lastName}`, ...formData }} />
       }
       
     </div>

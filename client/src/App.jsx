@@ -2,7 +2,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Form from "./components/Form";
 import Navbar from "./components/Navbar";
-// import SlipTemplate from "./components/SlipTemplate";
 import zenkleus from "./assets/Zenkleus-logo.png";
 
 const App = () => {
@@ -10,7 +9,6 @@ const App = () => {
     <div className="flex flex-col items-center h-screen">
       <div className="w-[90%] pb-12 max-md:pb-4">
         <Navbar />
-        {/* <SlipTemplate /> */}
         <Form />
         <ToastContainer
           position="bottom-right"
