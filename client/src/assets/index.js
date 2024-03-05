@@ -1,0 +1,1 @@
+export {default as skoolbod} from "./skoolbod.png"

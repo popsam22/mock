@@ -4,8 +4,20 @@ import hero from "../assets/hero.png";
 import logo from "../assets/logo.png";
 import axios from "axios";
 import { toast } from "react-toastify";
+import SuccessPage from "./SuccessPage";
+
+function createRandomString(length) {
+  const chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
 
 const Form = () => {
+  const [showSuccess, setShowSuccess] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dob, setDob] = useState("");
@@ -23,6 +35,7 @@ const Form = () => {
   const [session, setSession] = useState("morning");
   const [schoolType, setSchoolType] = useState("");
   const [classes, setClasses] = useState("arts");
+  const [examId, setExamId] = useState(createRandomString(10))
 
   const inputStyle = "p-2 border border-black rounded-lg focus:outline-none";
 
@@ -69,6 +82,7 @@ const Form = () => {
       session,
       referral_code,
       classes,
+      examId
     };
 
     const res = await axios.post(
@@ -95,6 +109,7 @@ const Form = () => {
           );
           if (result?.status === 200) {
             toast.success("Registration successful!");
+            setShowSuccess(true);
             setIsLoading(false);
             setFirstName("");
             setLastName("");
@@ -111,6 +126,7 @@ const Form = () => {
             setSchool("");
             setSession("");
             setClasses("morning");
+            setExamId(createRandomString(10));
           } else {
             setIsLoading(false);
             console.log(res);
@@ -132,11 +148,13 @@ const Form = () => {
       toast.error(res?.data?.message);
       return;
     }
+    // setShowSuccess(true);
   };
 
   return (
     <div>
-      <div className="flex max-md:flex-col gap-6 justify-between">
+      {!showSuccess
+        ?<div className="flex max-md:flex-col gap-6 justify-between">
         <div className="w-1/2 max-md:w-full max-md:hidden mt-20">
           <div className="flex justify-center items-center">
             <img src={logo} alt="skoolbod" className="object-contain" />
@@ -416,7 +434,10 @@ const Form = () => {
             </div>
           </form>
         </div>
-      </div>
+        </div>
+        : <SuccessPage data={{ name: `${firstName} ${lastName}`, department:classes, center:cbt_center, examId }} />
+      }
+      
     </div>
   );
 };

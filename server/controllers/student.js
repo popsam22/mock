@@ -17,6 +17,7 @@ const addStudent = async (req, res) => {
     cbt_center,
     referral_code,
     session,
+    examId
   } = req.body;
 
   if (
@@ -72,6 +73,7 @@ const addStudent = async (req, res) => {
       classes,
       cbt_center,
       referral_code,
+      examId
     });
     res.status(200).json(newStudent);
     console.log(newStudent);
