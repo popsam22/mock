@@ -28,7 +28,7 @@ const App = () => {
           <div className="flex items-center">
             <p>Powered by</p>
             <div className="h-[120px]">
-              <a href="https://zenkleus.com" target="_blank">
+              <a href="https://zenkleus.com" target="_blank" rel="noreferrer">
                 <img
                   src={zenkleus}
                   alt="logo"
