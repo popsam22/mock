@@ -3,6 +3,7 @@ const {
   beginPayment,
   createPayment,
   generateReceipt,
+  paymentWebhook,
 } = require("../services/payment.service");
 const crypto = require("crypto");
 
@@ -33,20 +34,25 @@ const getPaymentReceipt = async (req, res) => {
   }
 };
 
+// const verifySignature = (eventData, signature) => {
+//   const hash = crypto
+//     .createHmac("sha512", process.env.MYSECRETKEY)
+//     .update(JSON.stringify(eventData))
+//     .digest("hex");
+//   return hash === signature;
+// };
+
 const webhook = async (req, res) => {
   try {
-    const hash = crypto
-      .createHmac("sha512", process.env.MYSECRETKEY)
-      .update(JSON.stringify(req.body))
-      .digest("hex");
-    if (hash === req.headers["x-paystack-signature"]) {
-      const event = req.body;
-      if (event && event.event === "transfer.success") {
-        return res.status(200).json({ status: "Transfer successful" });
-      }
+    const event = req.body;
+    if (event?.event === "charge.success" && event?.data?.reference) {
+      return res.status(200).json({ status: "Transaction successful" });
     }
   } catch (error) {
-    res.status(500).json({ status: "transfer failed", message: error.message });
+    console.error("Webhook processing error:", error);
+    return res
+      .status(500)
+      .json({ status: "Webhook processing error", message: error.message });
   }
 };
 

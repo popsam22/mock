@@ -80,16 +80,22 @@ const generateReceipt = (body) => {
   });
 };
 
-const paymentWebhook = (req) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const event = req.body;
-      return resolve(event);
-    } catch (error) {
-      error.source = "Webhook failed, Couldn't get updates"
-      return reject(error)
-    }
-  })
-}
+// const paymentWebhook = async (req) => {
+//   try {
+//     const event = req.body;
+//     if (!event) {
+//       throw new Error("Invalid webhook event");
+//     }
+//     return event;
+//   } catch (error) {
+//     error.source = "Webhook failed, Couldn't get updates";
+//     throw error;
+//   }
+// };
 
-module.exports = { beginPayment, createPayment, generateReceipt, paymentWebhook };
+module.exports = {
+  beginPayment,
+  createPayment,
+  generateReceipt,
+  // paymentWebhook,
+};
